@@ -39,14 +39,19 @@
 
 .Charts {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  width: 55%;
+  width: 30vw;
+  margin: 0 3rem;
   height: 30vh;
   background: var(--second-color);
   margin-top: 3rem;
   border-radius: 10px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+}
+
+.ChartPage {
+  display: flex;
 }
 
 .CoinTable {
@@ -211,7 +216,7 @@ input {
   margin: 0rem 1.25rem 0 0;
   outline: none;
   text-align: center;
-  border: none;
+  border: 3px solid rgba(255, 255, 255, 0.1);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
   background: var(--background-color);
   color: white;
@@ -248,6 +253,7 @@ input {
 }
 
 .ChartTitle {
+  font-size: small;
   display: flex;
   justify-content: start;
   align-items: flex-start;
@@ -316,12 +322,43 @@ input {
   justify-content: start;
   align-items: center;
   width: 200%;
+}
 
+.FavIcon {
+  width: 1rem;
+  height: 1rem;
+  margin: 0 2rem 0 -.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Heart {
+  transform: scale(.85);
+  transition: .1s all ease-in-out;
+  cursor: pointer;
+}
+
+.isClicked {
+  color: red;
+}
+
+.Heart:hover {
+  transform: scale(1);
 }
 
 img {
   width: 1rem;
   margin: 0 .5rem 0 0;
+}
+
+.CoinContainer:hover a {
+  color: black;
+  transition: .1s all ease-in-out;
+}
+
+.CoinContainer:hover .Heart {
+  color: red;
 }
 
 .red {

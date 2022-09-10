@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Charts from './Charts'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
 
 const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
     const [coins, setCoins] = useState([])
     const [isSorted, setIsSorted] = useState(null)
+    const [clicked, setClicked] = useState(false)
 
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`
 
@@ -34,6 +37,11 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
         }
     }
 
+    const handleClickHeart = (e) => {
+        e.currentTarget.classList.toggle('isClicked')
+        console.log(e)
+    }
+
     const filteredCoinList = coins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase())).sort(!isSorted && isSorted !== false ? (a, b) => a.market_cap_rank - b.market_cap_rank : isSorted ? (a, b) => a.current_price - b.current_price : (b, a) => a.current_price - b.current_price)
 
     return (
@@ -41,7 +49,10 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
             <Charts grabCoinClicked={grabCoinClicked} />
             <div className="CoinTable">
                 <div className="CoinHeader">
-                    <div className="Bold CoinDiv">#</div>
+                    <div className="Bold CoinDiv">
+                        <div className="FavIcon"></div>
+                        #
+                    </div>
                     <div className="Bold CoinNameDiv">Name</div>
                     <div className="Bold CoinDiv"></div>
                     <div className="Bold CoinDiv Price" onClick={handlePriceChange}>Price {!isSorted && isSorted === false ? '↑' : isSorted ? '↓' : ' ↕'}</div>
@@ -53,26 +64,31 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
                 <div className="CoinsList">
                     {filteredCoinList.map(coin => {
                         return (
-                            <Link to={`/coin/${coin.id}`} coinId={coin.id} >
-                                <>
-                                    <div className="CoinContainer">
-                                        <div className="CoinDiv">{coin?.market_cap_rank}</div>
+                            <>
+                                <div className="CoinContainer">
+                                    <div className="CoinDiv">
+                                        <div className="FavIcon" onClick={handleClickHeart}>
+                                            <div className={clicked ? 'isClicked Heart' : 'Heart'} >
+                                                <FontAwesomeIcon icon={faHeart} />
+                                            </div>
+                                        </div>{coin?.market_cap_rank}</div>
+                                    <Link to={`/coin/${coin.id}`} coinId={coin.id} >
                                         <div className="CoinDiv CoinNameDiv">
                                             <img src={coin?.image} alt="" />
                                             {coin?.name} ({coin?.symbol?.toUpperCase()})</div>
-                                        <div className="CoinDiv"></div>
-                                        <div className="CoinDiv PriceDiv">{symbol}{coin?.current_price.toLocaleString()}</div>
-                                        <div className={coin?.price_change_percentage_24h
-                                            > 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.price_change_percentage_24h.toFixed(2)
-                                            }</div>
-                                        <div className={coin?.price_change_percentage_24h
-                                            > 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.market_cap_change_percentage_24h.toFixed(2)
-                                            }</div>
-                                        <div className="CoinDiv"><em>Chart</em></div>
-                                        <div className="CoinDiv"><em>Chart</em></div>
-                                    </div>
-                                </>
-                            </Link>
+                                    </Link>
+                                    <div className="CoinDiv"></div>
+                                    <div className="CoinDiv PriceDiv">{symbol}{coin?.current_price.toLocaleString()}</div>
+                                    <div className={coin?.price_change_percentage_24h
+                                        > 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.price_change_percentage_24h.toFixed(2)
+                                        }</div>
+                                    <div className={coin?.price_change_percentage_24h
+                                        > 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.market_cap_change_percentage_24h.toFixed(2)
+                                        }</div>
+                                    <div className="CoinDiv"><em>Chart</em></div>
+                                    <div className="CoinDiv"><em>Chart</em></div>
+                                </div>
+                            </>
                         )
                     })}
                 </div>
