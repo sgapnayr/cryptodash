@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Charts from './Charts'
+import Chart from '../charts/syncfusion'
 
 const CoinTable = ({ search, currency, symbol }) => {
     const [coins, setCoins] = useState([])

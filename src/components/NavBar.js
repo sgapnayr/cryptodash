@@ -48,7 +48,7 @@ function NavBar({ handleChange, handleSetCurrency, handleClearSearch, search, ha
                         <div className="Toggle" onClick={handleToggle}><Toggle isToggled={isToggled} /></div>
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     )
 }

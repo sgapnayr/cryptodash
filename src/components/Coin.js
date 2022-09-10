@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
+import Chart from '../charts/CoinPageChart'
 
 const Coin = ({ handleClearSearch, symbol, currency }) => {
     const [coin, setCoin] = useState('')
@@ -54,18 +55,7 @@ const Coin = ({ handleClearSearch, symbol, currency }) => {
                     </div>
                     <div className="CoinStats Hover">
                         <div className="CoinStatsContainer">
-                            <h4>
-                                Market Cap
-                            </h4>
-                            <p className='CoinStatInfo'>
-                                {symbol}{coin?.market_data?.market_cap?.usd?.toLocaleString()}
-                            </p>
-                            <h4>
-                                Volume
-                            </h4>
-                            <p className='CoinStatInfo'>
-                                {symbol}{coin?.market_data?.total_volume?.usd?.toLocaleString()}
-                            </p>
+                            <Chart coinClicked={coinClicked} />
                             <h4>
                                 Circ. Supply
                             </h4>

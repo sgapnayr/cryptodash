@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Chart as Chartjs } from 'chart.js/auto'
-import { Bar } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import axios from 'axios'
 
-export default function ShowChart() {
+export default function ShowChart({ coinClicked }) {
     const [apiData, setApiData] = useState([])
-    const url = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30`
+    const url = `https://api.coingecko.com/api/v3/coins/${coinClicked}/market_chart?vs_currency=usd&days=30`
     console.log(url)
 
     async function GetData() {
@@ -14,7 +14,7 @@ export default function ShowChart() {
 
     useEffect(() => {
         GetData()
-    }, [])
+    }, [coinClicked])
 
     const priceData = apiData?.prices?.map(el => el[1])
     const volumeLabels = apiData?.total_volumes?.map(el => new Date(el[0]).getDate().toString()).map(el => el.length === 1 ? `0${el}` : el)
@@ -23,7 +23,7 @@ export default function ShowChart() {
         labels: volumeLabels?.slice(0, 20),
         datasets: [
             {
-                label: 'Bitcoin',
+                label: coinClicked,
                 data: priceData,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -33,7 +33,7 @@ export default function ShowChart() {
                     'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)'
                 ],
-                lineTension: .5,
+                lineTension: .4,
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                     'rgba(54, 162, 235, 1)',
@@ -62,7 +62,7 @@ export default function ShowChart() {
         },
         elements: {
             point: {
-                radius: 11,
+                radius: 5,
             },
         },
         scales: {
@@ -87,7 +87,7 @@ export default function ShowChart() {
     };
     return (
         <>
-            <Bar data={data} options={options} />
+            <Line data={data} options={options} />
         </>
     )
 }
