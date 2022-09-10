@@ -1,38 +1,512 @@
+/* Pre */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
+  width: 100vw;
   text-align: center;
+  background: var(--background-color);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-family: Poppins;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.DayMode.App {
+  background: var(--daymode-color);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+:root {
+  --background-color: #1F2128;
+  --second-color: #191B1F;
+  --daymode-color: #fcfcfc;
+  --daymodesecond-color: rgb(202, 201, 201);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Components */
+.NavBar {
+  width: 100%;
+  height: 4rem;
+  background: var(--second-color);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+  display: flex;
+}
+
+.Charts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 30vh;
+  background: var(--second-color);
+  margin-top: 3rem;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+}
+
+.CoinTable {
+  width: 90%;
+  height: 45vh;
+  background: var(--second-color);
+  margin-top: 3rem;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
   display: flex;
   flex-direction: column;
+}
+
+.DayMode .NavBar {
+  background: var(--daymodesecond-color);
+}
+
+.DayMode .Charts {
+  background: var(--daymodesecond-color);
+}
+
+.DayMode .CoinTable {
+  background: var(--daymodesecond-color);
+}
+
+/* NavBar */
+.LeftSide {
+  width: 50%;
+  display: flex;
+  justify-content: start;
   align-items: center;
+}
+
+.LeftSideBox {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  margin: 1rem;
+  height: 100%;
+}
+
+.RightSide {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button {
+  padding: .25rem 1rem;
+  border-radius: 10px;
+  margin: 0 .5rem 0 .5rem;
+  outline: none;
+  text-align: center;
+  border: none;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+  background: var(--background-color);
+  cursor: pointer;
+  transition: .1s all ease-in-out;
+}
+
+.isActive {
+  background: white;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.7);
+  color: black;
+}
+
+.Button:hover {
+  background: white;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.7);
+  color: black;
+}
+
+.DayMode .Button {
+  background: var(--daymode-color);
+  color: black;
+}
+
+.DayMode .Button:hover {
+  background: var(--second-color);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.DayMode .isActive {
+  background: var(--second-color);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.SearchBar {
+  margin: .5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--background-color);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+}
+
+.DayMode .SearchBar {
+  background: var(--daymode-color);
+}
+
+input {
+  outline: none;
+  text-align: center;
+  border: none;
+  background: var(--background-color);
+  text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: .5rem .5rem;
+}
+
+.DayMode input {
+  color: black;
+}
+
+.ClearInput {
+  background-color: var(--background-color);
+  width: 100%;
+  padding: .5rem;
+  font-size: x-small;
+  cursor: pointer;
+  transition: .1s all ease-in-out;
+}
+
+.ClearInput:hover {
+  color: var(--background-color);
+}
+
+.DayMode .ClearInput {
+  background: white;
+  color: black;
+}
+
+.DayMode .ClearInput:hover {
+  color: var(--daymode-color);
+}
+
+.DayMode input {
+  background: var(--daymode-color);
+}
+
+.MagnifyGlass {
+  color: white;
+  padding: .5rem;
+  margin: 0 -.5rem 0 0;
+  transform: scale(.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.DayMode .MagnifyGlass {
+  color: black;
+}
+
+.selector {
+  padding: .5rem;
+  border-radius: 10px;
+  margin: 0rem 1.25rem 0 0;
+  outline: none;
+  text-align: center;
+  border: none;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+  background: var(--background-color);
+  color: white;
+  cursor: pointer;
+}
+
+.DayMode .selector {
+  background: var(--daymode-color);
+  color: black;
+}
+
+.ToggleComponent {
+  margin: -1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Chart */
+.Chart {
+  width: 40%;
+  margin: 2rem;
+  transform: scale(.75);
+}
+
+/* Coin Table */
+.CoinHeader {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 1rem;
+  font-size: small;
+  font-weight: bold;
+  margin-bottom: .5rem;
+}
+
+.Bold {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.CoinsList {
+  overflow: scroll;
+}
+
+.CoinContainer {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  font-size: small;
+  font-weight: bold;
+  padding: 1rem 0;
+  border-radius: 30px;
+  transition: .1s all ease-in-out;
+}
+
+.CoinContainer:hover {
+  background-color: white;
+  color: black;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.7);
+}
+
+.CoinDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PriceDiv {
+  justify-content: center;
+  align-items: center;
+}
+
+.CoinNameDiv {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 200%;
+
+}
+
+img {
+  width: 1rem;
+  margin: 0 .5rem 0 0;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green
+}
+
+.Price {
+  cursor: pointer;
+  transition: .1s all ease-in-out;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Price:hover {
+  background: white;
+  color: black;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.7);
+}
+
+/* Routing */
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.GoHome {
+  font-weight: bold;
+  margin: 3rem 0 2rem 0;
+  transition: .1s all ease-in-out;
+  cursor: pointer;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 1rem;
+  font-size: large;
+  text-shadow: 1px 1px 10px rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.GoHome:hover {
+  background: white;
+  color: black;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.7);
+  transform: scale(1.05);
+}
+
+.DayMode .GoHome {
+  color: black;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+}
+
+.DayMode .GoHome:hover {
+  background: black;
+  color: white;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Coin Page */
+.CoinPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.TopDiv {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CoinImage {
+  width: 30%;
+  height: 30vh;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  background: var(--second-color);
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.CoinImageImage {
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem;
+}
+
+.CoinName {
+  width: 90%;
+}
+
+.CoinPrice {
+  width: 30%;
+  height: 30vh;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  background: var(--second-color);
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.CoinStats {
+  width: 30%;
+  height: 30vh;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  background: var(--second-color);
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.CoinStatsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transform: scale(.85);
+}
+
+.CoinStatInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: .25rem;
+  font-style: italic;
+  color: gray;
+}
+
+.BottomDiv {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CoinDescription {
+  width: 95vw;
+  height: 25vh;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  background: var(--second-color);
+  margin: 1rem;
+  padding: 1rem;
+  overflow: scroll;
+}
+
+.CoinName {
+  width: 90%;
+}
+
+.Hover {
+  transition: .1s all ease-in-out;
+  cursor: pointer;
+}
+
+.Hover:hover {
+  transform: scale(1.05);
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+.DayMode .Hover {
+  background: var(--daymodesecond-color);
+}
+
+.CoinMarketRank {
+  color: gray;
+  font-style: italic;
+}
+
+.CoinDescriptionHeader {
+  margin: 0 1rem .5rem;
+  font-style: italic;
+}
+
+button {
+  padding: .5rem 1rem;
+  margin: 1rem;
+  border-radius: 10px;
+  background: var(--background-color);
+  color: white;
+  outline: none;
+  border: none;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+  cursor: pointer;
+}
+
+.DayMode button {
+  background: var(--daymode-color);
+  color: black;
 }

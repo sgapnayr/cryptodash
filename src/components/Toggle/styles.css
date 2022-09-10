@@ -1,0 +1,143 @@
+.toggle {
+    height: 2rem;
+    width: 5rem;
+    background-image: linear-gradient(rgb(188, 188, 188), #fcfcfc);
+    border-radius: 30px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+    display: flex;
+    align-items: center;
+    margin: auto;
+    position: relative;
+    cursor: pointer;
+    transition: .1s all ease-in-out;
+    transform: scale(.7);
+}
+
+.toggle:hover {
+    transform: scale(.75);
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, .4);
+}
+
+.toggle.night {
+    background-image: linear-gradient(#343844, #191B1F);
+    justify-content: end;
+}
+
+.notch {
+    height: 1.5rem;
+    width: 1.5rem;
+    background-image: linear-gradient(#ffffff, #abb3c6);
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .2);
+    position: absolute;
+    left: .3rem;
+    z-index: 1;
+    transition: .2s all ease-in-out;
+}
+
+.night>.notch {
+    background-image: linear-gradient(rgb(216, 216, 216), rgb(243, 243, 243));
+    transform: translate(2.75rem);
+}
+
+.shape {
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 10px rgba(255, 255, 255, .5);
+    border-radius: 50%;
+    position: absolute;
+    transition: .5s all ease-in-out;
+}
+
+.sm {
+    height: .25rem;
+    width: 1.5rem;
+    left: 50%;
+    top: 20%;
+}
+
+.smmd {
+    height: .25rem;
+    width: rem;
+    left: 60%;
+    top: 70%;
+}
+
+.md {
+    height: .35rem;
+    width: 2.5rem;
+    left: 25%;
+    top: 60%;
+    z-index: 2;
+}
+
+.lg {
+    height: .25rem;
+    width: 2.25rem;
+    left: 50%;
+    top: 40%;
+}
+
+.night .shape {
+    box-shadow: 1px 1px 10px violet;
+    background: rgb(255, 255, 255);
+}
+
+.night .sm {
+    height: .25rem;
+    width: .25rem;
+    left: 25%;
+    top: 20%;
+}
+
+.night .smmd {
+    height: .25rem;
+    width: .25rem;
+    left: 45%;
+    top: 70%;
+}
+
+.night .md {
+    height: .35rem;
+    width: .35rem;
+    left: 25%;
+    top: 60%;
+    z-index: 2;
+}
+
+.night .lg {
+    height: .4rem;
+    width: .4rem;
+    left: 40%;
+    top: 40%;
+}
+
+.night .crater {
+    opacity: 1;
+}
+
+.crater {
+    opacity: 0;
+}
+
+.notch>.crater {
+    background: rgba(222, 184, 135, 0.593);
+    border-radius: 50%;
+    width: .75rem;
+    height: .5rem;
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .4) inset;
+}
+
+.crater:first-child {
+    left: 9%;
+    top: 15%;
+    rotate: -45deg;
+}
+
+.crater:last-child {
+    width: .5rem;
+    right: 9%;
+    top: 20%;
+    rotate: 45deg;
+}
