@@ -4,9 +4,9 @@ import { Chart as Chartjs } from 'chart.js/auto'
 import { Bar } from 'react-chartjs-2'
 import axios from 'axios'
 
-export default function ShowChart() {
+export default function ShowChart({ grabCoinClicked }) {
     const [apiData, setApiData] = useState([])
-    const url = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30`
+    const url = `https://api.coingecko.com/api/v3/coins/${grabCoinClicked}/market_chart?vs_currency=usd&days=30`
     console.log(url)
 
     async function GetData() {
@@ -17,14 +17,14 @@ export default function ShowChart() {
         GetData()
     }, [])
 
-    const priceData = apiData?.prices?.map(el => el[1])
+    const priceData = apiData?.market_caps?.map(el => el[1])
     const volumeLabels = apiData?.total_volumes?.map(el => new Date(el[0]).getDate().toString()).map(el => el.length === 1 ? `0${el}` : el)
 
     const data = {
         labels: volumeLabels?.slice(0, 7),
         datasets: [
             {
-                label: 'Bitcoin',
+                label: grabCoinClicked,
                 data: priceData,
                 backgroundColor: [
                     'rgba(255, 159, 64, 0.2)'

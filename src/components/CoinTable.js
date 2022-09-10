@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Charts from './Charts'
 
-const CoinTable = ({ search, currency, symbol }) => {
+const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
     const [coins, setCoins] = useState([])
     const [isSorted, setIsSorted] = useState(null)
 
@@ -15,7 +15,7 @@ const CoinTable = ({ search, currency, symbol }) => {
 
     useEffect(() => {
         GetData()
-    }, [currency, symbol])
+    }, [currency, symbol, grabCoinClicked])
 
     const handlePriceChange = () => {
         switch (isSorted) {
@@ -38,7 +38,7 @@ const CoinTable = ({ search, currency, symbol }) => {
 
     return (
         <>
-            <Charts />
+            <Charts grabCoinClicked={grabCoinClicked} />
             <div className="CoinTable">
                 <div className="CoinHeader">
                     <div className="Bold CoinDiv">#</div>

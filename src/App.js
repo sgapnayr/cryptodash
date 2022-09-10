@@ -13,6 +13,7 @@ function App() {
   const [currency, setCurrency] = useState('usd')
   const [symbol, setSymbol] = useState('$')
   const [isToggled, setIsToggled] = useState(true)
+  const [grabCoinClicked, setGrabCoinClicked] = useState('bitcoin')
 
   const handleToggle = () => {
     setIsToggled(!isToggled)
@@ -46,12 +47,16 @@ function App() {
     handleSetSymbol(value.toLowerCase())
   }
 
+  const handleGrabCoinClicked = (coin) => {
+    setGrabCoinClicked(coin)
+  }
+
   return (
     <div className={isToggled ? 'App' : 'App DayMode'}>
       <NavBar handleChange={handleChange} handleSetCurrency={handleSetCurrency} search={search} handleToggle={handleToggle} isToggled={isToggled} handleClearSearch={handleClearSearch} />
       <Routes>
-        <Route path='/' element={<CoinTable search={search} currency={currency} symbol={symbol} />} />
-        <Route path='/coin/:coinId' element={<Coin handleClearSearch={handleClearSearch} symbol={symbol} currency={currency} />} />
+        <Route path='/' element={<CoinTable search={search} currency={currency} symbol={symbol} grabCoinClicked={grabCoinClicked} />} />
+        <Route path='/coin/:coinId' element={<Coin handleClearSearch={handleClearSearch} symbol={symbol} currency={currency} handleGrabCoinClicked={handleGrabCoinClicked} />} />
         <Route path='/portfolio' element={<Portfolio />} />
       </Routes>
     </div>

@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import Chart from '../charts/CoinPageChart'
 
-const Coin = ({ handleClearSearch, symbol, currency }) => {
+const Coin = ({ handleClearSearch, symbol, currency, handleGrabCoinClicked }) => {
     const [coin, setCoin] = useState('')
     const [isOpen, setIsOpen] = useState(false)
     const params = useParams()
@@ -18,6 +18,7 @@ const Coin = ({ handleClearSearch, symbol, currency }) => {
     useEffect(() => {
         GetData()
         handleClearSearch()
+        handleGrabCoinClicked(coinClicked)
     }, [coinClicked, symbol])
 
     const handleOpen = () => {

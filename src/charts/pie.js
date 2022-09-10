@@ -3,9 +3,9 @@ import { Chart as Chartjs } from 'chart.js/auto'
 import { Pie } from 'react-chartjs-2'
 import axios from 'axios'
 
-export default function ShowChart() {
+export default function ShowChart({ grabCoinClicked }) {
     const [apiData, setApiData] = useState([])
-    const url = `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30`
+    const url = `https://api.coingecko.com/api/v3/coins/${grabCoinClicked}/market_chart?vs_currency=usd&days=30`
     console.log(url)
 
     async function GetData() {
@@ -23,7 +23,7 @@ export default function ShowChart() {
         labels: volumeLabels?.slice(0, 30),
         datasets: [
             {
-                label: 'Bitcoin',
+                label: grabCoinClicked,
                 data: priceData,
                 backgroundColor: [
                     'rgba(96, 95, 94, 0.2)'
@@ -60,24 +60,26 @@ export default function ShowChart() {
             },
         },
         scales: {
-            y: {
-                grid: {
-                    display: false,
-                    drawTicks: false,
+            x: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Month'
+                }
+            }],
+            y: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Value'
                 },
                 ticks: {
-                    display: false,
-                },
-            },
-            x: {
-                grid: {
-                    display: false,
-                },
-                ticks: {
-                    display: false,
-                },
-            },
-        },
+                    min: 0,
+                    max: 100,
+                    stepSize: 5
+                }
+            }]
+        }
     };
     return (
         <>
