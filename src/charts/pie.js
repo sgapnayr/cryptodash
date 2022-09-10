@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Chart as Chartjs } from 'chart.js/auto'
-import { Line } from 'react-chartjs-2'
+import { Pie } from 'react-chartjs-2'
 import axios from 'axios'
 
 export default function ShowChart() {
@@ -23,12 +23,22 @@ export default function ShowChart() {
         labels: volumeLabels?.slice(0, 30),
         datasets: [
             {
-                label: ['1'],
-                lineTension: .5,
-                backgroundColor: 'white',
-                borderColor: 'white',
+                label: 'Bitcoin',
+                data: priceData,
+                backgroundColor: [
+                    'rgba(96, 95, 94, 0.2)'
+                ],
+                PieTension: .5,
+                borderColor: [
+                    'rgb(251, 54, 64)',
+                    'rgb(96, 95, 94)',
+                    'rgb(29, 52, 97)',
+                    'rgb(31, 72, 126)',
+                    'rgb(36, 123, 160)',
+                ],
+                borderWidth: 3,
                 fontStyle: "bold",
-                fill: false,
+                fill: true,
                 data: priceData?.slice(0, 30),
             }]
     }
@@ -36,7 +46,7 @@ export default function ShowChart() {
     const options = {
         plugins: {
             legend: {
-                display: true,
+                display: false,
             },
             layout: {
                 padding: 1,
@@ -46,7 +56,7 @@ export default function ShowChart() {
         },
         elements: {
             point: {
-                radius: 1,
+                radius: 5,
             },
         },
         scales: {
@@ -71,7 +81,9 @@ export default function ShowChart() {
     };
     return (
         <>
-            <Line data={data} options={options} />
+            <div className="Chart2">
+                <Pie data={data} options={options} />
+            </div>
         </>
     )
 }

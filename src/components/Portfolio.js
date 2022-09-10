@@ -4,7 +4,7 @@ const Portfolio = () => {
     return (
         <>
             <div className="PortfolioPage">
-                <h1>I am portfoliopage</h1>
+                <h1>I am Portfolio</h1>
             </div>
         </>
     )

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { Chart as Chartjs } from 'chart.js/auto'
 import { Bar } from 'react-chartjs-2'
@@ -20,32 +21,21 @@ export default function ShowChart() {
     const volumeLabels = apiData?.total_volumes?.map(el => new Date(el[0]).getDate().toString()).map(el => el.length === 1 ? `0${el}` : el)
 
     const data = {
-        labels: volumeLabels?.slice(0, 20),
+        labels: volumeLabels?.slice(0, 7),
         datasets: [
             {
                 label: 'Bitcoin',
                 data: priceData,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
                     'rgba(255, 159, 64, 0.2)'
                 ],
-                lineTension: .5,
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
                 borderWidth: 3,
                 fontStyle: "bold",
                 fill: false,
-                data: priceData?.slice(0, 20),
+                data: priceData?.slice(0, 300),
             }]
     }
 
@@ -62,7 +52,7 @@ export default function ShowChart() {
         },
         elements: {
             point: {
-                radius: 11,
+                radius: 2,
             },
         },
         scales: {
@@ -87,7 +77,9 @@ export default function ShowChart() {
     };
     return (
         <>
-            <Bar data={data} options={options} />
+            <div className="Chart2">
+                <Bar data={data} options={options} />
+            </div>
         </>
     )
 }

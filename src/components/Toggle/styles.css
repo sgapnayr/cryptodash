@@ -1,3 +1,7 @@
+.ToggleWrapper {
+    margin: 0 1.5rem 0 0;
+}
+
 .toggle {
     height: 2rem;
     width: 5rem;
