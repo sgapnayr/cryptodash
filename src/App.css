@@ -652,6 +652,7 @@ button {
   display: grid;
   justify-content: center;
   align-items: center;
+  align-items: center;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   font-weight: bold;
   padding: 2rem 0;
