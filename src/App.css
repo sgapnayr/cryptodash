@@ -56,7 +56,7 @@
 
 .CoinTable {
   width: 90%;
-  height: 45vh;
+  height: 48vh;
   background: var(--second-color);
   margin-top: 3rem;
   border-radius: 10px;
@@ -216,9 +216,9 @@ input {
   margin: 0rem 1.25rem 0 0;
   outline: none;
   text-align: center;
-  border: 3px solid rgba(255, 255, 255, 0.1);
   box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
   background: var(--background-color);
+  border: none;
   color: white;
   cursor: pointer;
 }
@@ -327,7 +327,7 @@ input {
 .FavIcon {
   width: 1rem;
   height: 1rem;
-  margin: 0 2rem 0 -.5rem;
+  margin: 0 1.5rem 0 -.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,6 +337,19 @@ input {
   transform: scale(.85);
   transition: .1s all ease-in-out;
   cursor: pointer;
+}
+
+.Click {
+  color: transparent;
+  display: flex;
+}
+
+.CoinContainer:hover .Click {
+  font-style: italic;
+}
+
+.HeartInside {
+  background: red;
 }
 
 .isClicked {
@@ -382,6 +395,47 @@ img {
   background: white;
   color: black;
   box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.7);
+}
+
+.ListBarParent {
+  width: 100%;
+  background: rgba(210, 201, 31, 0.627);
+  height: .5rem;
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+}
+
+.ListBarChild {
+  width: 23%;
+  background: rgba(223, 213, 10, 1);
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  height: .5rem;
+}
+
+.ListBarDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-direction: row;
+}
+
+.ListBarWrapper {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ListBarInfo {
+  font-size: smaller;
+  font-style: italic;
+}
+
+.FrontPageChart {
+  width: 100%;
 }
 
 /* Routing */
@@ -569,7 +623,17 @@ button {
 }
 
 .PortfolioPage {
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.PortfolioList {
+  height: 50vh;
+  width: 90%;
+  background: var(--second-color);
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
 }

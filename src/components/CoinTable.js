@@ -4,6 +4,8 @@ import axios from 'axios'
 import Charts from './Charts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
+import { ListBarParent, ListBarChild, ListBarParent2, ListBarChild2, ListWrapper } from './Styled.Components.js'
+import CoinPageChart from '../charts/CoinPageChart'
 
 const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
     const [coins, setCoins] = useState([])
@@ -62,10 +64,10 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
                     <div className="Bold CoinDiv">Volume</div>
                 </div>
                 <div className="CoinsList">
-                    {filteredCoinList.map(coin => {
+                    {filteredCoinList.map((coin, i) => {
                         return (
                             <>
-                                <div className="CoinContainer">
+                                <div className="CoinContainer" key={coin}>
                                     <div className="CoinDiv">
                                         <div className="FavIcon" onClick={handleClickHeart}>
                                             <div className={clicked ? 'isClicked Heart' : 'Heart'} >
@@ -77,22 +79,85 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
                                             <img src={coin?.image} alt="" />
                                             {coin?.name} ({coin?.symbol?.toUpperCase()})</div>
                                     </Link>
-                                    <div className="CoinDiv"></div>
+                                    <div className="CoinDiv Click">← Click</div>
                                     <div className="CoinDiv PriceDiv">{symbol}{coin?.current_price.toLocaleString()}</div>
                                     <div className={coin?.price_change_percentage_24h
-                                        > 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.price_change_percentage_24h.toFixed(2)
-                                        }</div>
+                                        < 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.price_change_percentage_24h.toFixed(2)
+                                        }%</div>
                                     <div className={coin?.price_change_percentage_24h
-                                        > 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.market_cap_change_percentage_24h.toFixed(2)
-                                        }</div>
-                                    <div className="CoinDiv"><em>Chart</em></div>
-                                    <div className="CoinDiv"><em>Chart</em></div>
+                                        < 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.market_cap_change_percentage_24h.toFixed(2)
+                                        }%</div>
+                                    <div className="CoinDiv">
+                                        <ListWrapper>
+                                            <div key={i} style={i % 1 === 0 ? { color: 'rgb(251, 54, 64)' } : {}}>
+                                                <div key={i} style={i % 2 === 1 ? { color: 'rgb(96, 95, 94)' } : {}}>
+                                                    <div key={i} style={i % 3 === 1 ? { color: 'rgb(29, 52, 97)' } : {}}>
+                                                        <div key={i} style={i % 4 === 1 ? { color: 'rgb(31, 72, 126)' } : {}}>
+                                                            <div key={i} style={i % 5 === 1 ? { color: 'rgb(36, 123, 160)' } : {}}>
+                                                                <div className="ListBarDiv">
+                                                                    <p className='ListBarInfo'>{symbol}{coin.market_cap > 1000000 && coin.market_cap < 1000000000 ? coin.market_cap.toString().charAt(0) + '.' + coin.market_cap.toString().charAt(1) + 'M' : coin.market_cap > 1000000000 ? coin.market_cap.toString().charAt(0) + '.' + coin.market_cap.toString().charAt(1) + 'B' : ''}</p>
+                                                                    <p className='ListBarInfo'>{symbol}{coin.market_cap_change_24h < 1000000 ? 'N/A' : coin.market_cap_change_24h > 1000000 && coin.market_cap_change_24h < 1000000000 ? coin.market_cap_change_24h.toString().charAt(0) + '.' + coin.market_cap_change_24h.toString().charAt(1) + 'M' : coin.market_cap_change_24h > 1000000000 ? coin.market_cap_change_24h.toString().charAt(0) + '.' + coin.market_cap_change_24h.toString().charAt(1) + 'B' : ''}</p>
+                                                                </div>
+                                                                <ListBarParent>
+                                                                    <div key={i} style={i % 1 === 0 ? { backgroundColor: 'rgb(251, 54, 64)' } : {}}>
+                                                                        <div key={i} style={i % 2 === 1 ? { backgroundColor: 'rgb(96, 95, 94)' } : {}}>
+                                                                            <div key={i} style={i % 3 === 1 ? { backgroundColor: 'rgb(29, 52, 97)' } : {}}>
+                                                                                <div key={i} style={i % 4 === 1 ? { backgroundColor: 'rgb(31, 72, 126)' } : {}}>
+                                                                                    <div key={i} style={i % 5 === 1 ? { backgroundColor: 'rgb(36, 123, 160)' } : {}}>
+                                                                                        <ListBarChild marketCap24h={coin.market_cap_change_24h} marketCap={coin.market_cap}>
+                                                                                        </ListBarChild>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ListBarParent>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ListWrapper>
+                                    </div>
+                                    <div className="CoinDiv">
+                                        <ListWrapper>
+                                            <div key={i} style={i % 1 === 0 ? { color: 'rgb(251, 54, 64)' } : {}}>
+                                                <div key={i} style={i % 2 === 1 ? { color: 'rgb(96, 95, 94)' } : {}}>
+                                                    <div key={i} style={i % 3 === 1 ? { color: 'rgb(29, 52, 97)' } : {}}>
+                                                        <div key={i} style={i % 4 === 1 ? { color: 'rgb(31, 72, 126)' } : {}}>
+                                                            <div key={i} style={i % 5 === 1 ? { color: 'rgb(36, 123, 160)' } : {}}>
+                                                                <div className="ListBarDiv">
+                                                                    <p className='ListBarInfo'>{symbol}{coin.total_volume < 1000000 ? 'N/A' : coin.total_volume > 1000000 && coin.total_volume < 1000000000 ? coin.total_volume.toString().charAt(0) + '.' + coin.total_volume.toString().charAt(1) + 'M' : coin.total_volume > 1000000000 ? coin.total_volume.toString().charAt(0) + '.' + coin.total_volume.toString().charAt(1) + 'B' : ''}</p>
+                                                                    <p className='ListBarInfo'>{symbol}{coin.circulating_supply < 1000000 ? 'N/A' : coin.circulating_supply > 1000000 && coin.circulating_supply < 1000000000 ? coin.circulating_supply.toString().charAt(0) + '.' + coin.circulating_supply.toString().charAt(1) + 'M' : coin.circulating_supply > 1000000000 ? coin.circulating_supply.toString().charAt(0) + '.' + coin.circulating_supply.toString().charAt(1) + 'B' : ''}</p>
+                                                                </div>
+                                                                <ListBarParent2>
+                                                                    <div key={i} style={i % 1 === 0 ? { backgroundColor: 'rgb(251, 54, 64)' } : {}}>
+                                                                        <div key={i} style={i % 2 === 1 ? { backgroundColor: 'rgb(96, 95, 94)' } : {}}>
+                                                                            <div key={i} style={i % 3 === 1 ? { backgroundColor: 'rgb(29, 52, 97)' } : {}}>
+                                                                                <div key={i} style={i % 4 === 1 ? { backgroundColor: 'rgb(31, 72, 126)' } : {}}>
+                                                                                    <div key={i} style={i % 5 === 1 ? { backgroundColor: 'rgb(36, 123, 160)' } : {}}>
+                                                                                        <ListBarChild2 totalVolume={coin.total_volume} totalSupply={coin.circulating_supply}
+
+                                                                                        ></ListBarChild2>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ListBarParent2>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ListWrapper>
+                                    </div>
                                 </div>
                             </>
                         )
                     })}
                 </div>
-            </div>
+            </div >
         </>
     )
 }

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Portfolio = () => {
+    const [list, setList] = useState([])
+
     return (
         <>
             <div className="PortfolioPage">
-                <h1>I am Portfolio</h1>
+                <div className="PortfolioList"></div>
             </div>
         </>
     )
