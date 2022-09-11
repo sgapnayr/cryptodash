@@ -20,7 +20,7 @@ function NavBar({ handleChange, handleSetCurrency, handleClearSearch, search, ha
                 <div className="LeftSide NavBarSpacing">
                     <div className="LeftSideBox">
                         <Link to='/' >
-                            <div onClick={handleIsActive} className={pathname === '/' ? 'isActive Button' : 'Button'}>Coin</div>
+                            <div onClick={handleIsActive} className={pathname === '/' ? 'isActive Button' : 'Button'}>Home</div>
                         </Link>
                         <Link to='/portfolio' >
                             <div onClick={handleIsActive} className={pathname === '/portfolio' ? 'Button isActive' : 'Button'}>Portfolio</div>

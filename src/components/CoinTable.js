@@ -79,7 +79,7 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
                                             <img src={coin?.image} alt="" />
                                             {coin?.name} ({coin?.symbol?.toUpperCase()})</div>
                                     </Link>
-                                    <div className="CoinDiv Click">← Click</div>
+                                    <div className="CoinDiv"></div>
                                     <div className="CoinDiv PriceDiv">{symbol}{coin?.current_price.toLocaleString()}</div>
                                     <div className={coin?.price_change_percentage_24h
                                         < 0 ? 'CoinDiv red' : 'CoinDiv green'}>{coin?.price_change_percentage_24h.toFixed(2)

@@ -78,7 +78,7 @@ const Coin = ({ handleClearSearch, symbol, currency, handleGrabCoinClicked }) =>
                             <h4>Coin Description</h4>
                         </div>
                         <div className="Description">
-                            {coin?.description?.en.length <= 400 && coin?.description?.en.length != 0 ? coin?.description?.en : coin?.description?.en.length === 0 ? 'There is no description for this currency.' : isOpen ? coin?.description?.en : coin?.description?.en.slice(0, 400) + ' ...'}
+                            {coin?.description?.en.length <= 400 && coin?.description?.en.length != 0 ? coin?.description?.en : coin?.description?.en.length === 0 ? 'There is no description for this currency.' : isOpen ? coin?.description?.en : coin?.description?.en.slice(0, 300) + ' ...'}
                         </div>
                         {coin?.description?.en.length >= 400 ? <button onClick={handleOpen}>{isOpen ? 'Show Less' : 'Show More'}</button> : ''}
                     </div>
