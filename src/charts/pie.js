@@ -39,7 +39,7 @@ export default function ShowChart({ grabCoinClicked }) {
                 borderWidth: 3,
                 fontStyle: "bold",
                 fill: true,
-                data: priceData?.slice(0, 10),
+                data: priceData?.slice(0, 40),
             }]
     }
 
