@@ -52,6 +52,14 @@
   box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
 }
 
+.Charts:hover {
+  background: rgb(38, 38, 38);
+}
+
+.DayMode .Charts:hover {
+  background: rgb(181, 181, 181);
+}
+
 .ChartPage {
   display: flex;
 }
@@ -665,6 +673,18 @@ button {
   margin: .5rem;
 }
 
+.DayMode .PortfolioCoinContainer {
+  color: black;
+  background: rgb(252, 252, 252);
+  background: linear-gradient(125deg, rgba(252, 252, 252, 1) 0%, rgb(231, 231, 231) 50%, rgb(255, 255, 255) 100%);
+}
+
+.DayMode .PortfolioCoinContainer:hover {
+  color: white;
+  background: black;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, .4);
+}
+
 .PortfolioCoinContainer img {
   width: 2rem;
 }
@@ -687,4 +707,8 @@ button {
   align-items: center;
   flex-direction: column;
   padding: .5rem;
+}
+
+.DayMode .PortfolioList {
+  background: var(--daymodesecond-color);
 }
