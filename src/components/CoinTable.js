@@ -64,7 +64,7 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
                     <div className="Bold CoinDiv">Volume</div>
                 </div>
                 <div className="CoinsList">
-                    {filteredCoinList.map((coin, i) => {
+                    {filteredCoinList?.map((coin, i) => {
                         return (
                             <>
                                 <div className="CoinContainer" key={coin}>
@@ -94,9 +94,10 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
                                                     <div key={i} style={i % 3 === 1 ? { color: 'rgb(29, 52, 97)' } : {}}>
                                                         <div key={i} style={i % 4 === 1 ? { color: 'rgb(31, 72, 126)' } : {}}>
                                                             <div key={i} style={i % 5 === 1 ? { color: 'rgb(36, 123, 160)' } : {}}>
+                                                                {/* colors[i % colors.length - 1] */}
                                                                 <div className="ListBarDiv">
-                                                                    <p className='ListBarInfo'>{symbol}{coin.market_cap > 1000000 && coin.market_cap < 1000000000 ? coin.market_cap.toString().charAt(0) + '.' + coin.market_cap.toString().charAt(1) + 'M' : coin.market_cap > 1000000000 ? coin.market_cap.toString().charAt(0) + '.' + coin.market_cap.toString().charAt(1) + 'B' : ''}</p>
-                                                                    <p className='ListBarInfo'>{symbol}{coin.market_cap_change_24h < 1000000 ? 'N/A' : coin.market_cap_change_24h > 1000000 && coin.market_cap_change_24h < 1000000000 ? coin.market_cap_change_24h.toString().charAt(0) + '.' + coin.market_cap_change_24h.toString().charAt(1) + 'M' : coin.market_cap_change_24h > 1000000000 ? coin.market_cap_change_24h.toString().charAt(0) + '.' + coin.market_cap_change_24h.toString().charAt(1) + 'B' : ''}</p>
+                                                                    <p className='ListBarInfo'>{symbol}{coin?.market_cap > 1000000 && coin?.market_cap < 1000000000 ? coin.market_cap.toString().charAt(0) + '.' + coin.market_cap.toString().charAt(1) + 'M' : coin?.market_cap > 1000000000 ? coin?.market_cap.toString().charAt(0) + '.' + coin.market_cap.toString().charAt(1) + 'B' : ''}</p>
+                                                                    <p className='ListBarInfo'>{symbol}{coin?.market_cap_change_24h < 1000000 ? 'N/A' : coin?.market_cap_change_24h > 1000000 && coin?.market_cap_change_24h < 1000000000 ? coin?.market_cap_change_24h.toString().charAt(0) + '.' + coin.market_cap_change_24h.toString().charAt(1) + 'M' : coin.market_cap_change_24h > 1000000000 ? coin.market_cap_change_24h.toString().charAt(0) + '.' + coin.market_cap_change_24h.toString().charAt(1) + 'B' : ''}</p>
                                                                 </div>
                                                                 <ListBarParent>
                                                                     <div key={i} style={i % 1 === 0 ? { backgroundColor: 'rgb(251, 54, 64)' } : {}}>
@@ -157,7 +158,7 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
                         )
                     })}
                 </div>
-            </div >
+            </div>
         </>
     )
 }

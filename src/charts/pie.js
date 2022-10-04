@@ -36,7 +36,7 @@ export default function ShowChart({ grabCoinClicked }) {
                     'rgb(31, 72, 126)',
                     'rgb(36, 123, 160)',
                 ],
-                borderWidth: 4,
+                borderWidth: 5,
                 fontStyle: "bold",
                 fill: true,
                 data: priceData?.slice(0, 15),
