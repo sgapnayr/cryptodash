@@ -11,8 +11,8 @@ const Coin = ({ handleClearSearch, symbol, currency, handleGrabCoinClicked }) =>
 
     const url = `https://api.coingecko.com/api/v3/coins/${coinClicked}`
 
-    function GetData() {
-        axios.get(url).then(res => setCoin(res.data)).catch(err => console.log(err))
+    async function GetData() {
+        await axios.get(url).then(res => setCoin(res.data)).catch(err => console.log(err))
     }
 
     useEffect(() => {

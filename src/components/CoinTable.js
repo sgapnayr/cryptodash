@@ -14,8 +14,8 @@ const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
 
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`
 
-    function GetData() {
-        axios.get(url)?.then(res => setCoins(res.data)).catch(err => console.log(err))
+    async function GetData() {
+        await axios.get(url)?.then(res => setCoins(res.data)).catch(err => console.log(err))
     }
 
     useEffect(() => {
