@@ -5,7 +5,6 @@ import Charts from './Charts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons'
 import { ListBarParent, ListBarChild, ListBarParent2, ListBarChild2, ListWrapper } from './Styled.Components.js'
-import CoinPageChart from '../charts/CoinPageChart'
 
 const CoinTable = ({ search, currency, symbol, grabCoinClicked }) => {
     const [coins, setCoins] = useState([])

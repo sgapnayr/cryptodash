@@ -59,6 +59,7 @@ function App() {
         <Route path='/coin/:coinId' element={<Coin handleClearSearch={handleClearSearch} symbol={symbol} currency={currency} handleGrabCoinClicked={handleGrabCoinClicked} />} />
         <Route path='/portfolio' element={<Portfolio currency={currency} symbol={symbol} />} />
       </Routes>
+
     </div>
   );
 }
